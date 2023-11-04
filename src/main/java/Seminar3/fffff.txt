@@ -1,0 +1,40 @@
+package Seminar3;
+
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+
+public class fffff {
+    try {
+        CalculationData data = readDataFromFile("input.txt");
+        double result = calculate(data.num1, data.operator, data.num2);
+        System.out.println("Результат: " + result);
+    } catch (IOException | InvalidInputException e) {
+        e.printStackTrace();
+    }
+}
+
+    public static CalculationData readDataFromFile(String fileName) throws IOException {
+        FileReader file = new FileReader(fileName);
+        BufferedReader fileInput = new BufferedReader(file);
+
+        double num1 = Double.parseDouble(fileInput.readLine());
+        char operator = fileInput.readLine().charAt(0);
+        double num2 = Double.parseDouble(fileInput.readLine());
+
+        fileInput.close();
+        return new CalculationData(num1, operator, num2);
+    }
+
+static class CalculationData {
+    double num1;
+    char operator;
+    double num2;
+
+    CalculationData(double num1, char operator, double num2) {
+        this.num1 = num1;
+        this.operator = operator;
+        this.num2 = num2;
+    }
+}
+}
